@@ -92,6 +92,15 @@ export class Renderer {
     }
 
     const page = await this.browser.newPage();
+	console.log("SER");
+		  page
+    .on('console', message =>
+      console.log(`${message.type().substr(0, 3).toUpperCase()} ${message.text()}`))
+    .on('pageerror', ({ message }) => console.log(message))
+    .on('response', response =>
+      console.log(`${response.status()} ${response.url()}`))
+    .on('requestfailed', request =>
+      console.log(`${request.failure().errorText} ${request.url()}`));
 
     // Page may reload when setting isMobile
     // https://github.com/GoogleChrome/puppeteer/blob/v1.10.0/docs/api.md#pagesetviewportviewport
@@ -250,7 +259,7 @@ export class Renderer {
     timezoneId?: string
   ): Promise<Buffer> {
     const page = await this.browser.newPage();
-	
+	console.log("SCR");
 	  page
     .on('console', message =>
       console.log(`${message.type().substr(0, 3).toUpperCase()} ${message.text()}`))
