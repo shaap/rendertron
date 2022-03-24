@@ -159,7 +159,8 @@ export class Rendertron {
 	console.log("TEST");
 	if (serialized.content.includes("Server-Fehler")) {
 		console.log("ERR FOUND");
-		return handleRenderRequest(ctx,url);
+		this.handleRenderRequest(ctx,url);
+		return;
 	}
 
     for (const key in this.config.headers) {
