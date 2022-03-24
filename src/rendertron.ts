@@ -155,6 +155,10 @@ export class Rendertron {
       mobileVersion,
       ctx.query.timezoneId
     );
+	
+	if (serialized.content.includes("Server-Fehler")) {
+		return handleRenderRequest(ctx,url);
+	}
 
     for (const key in this.config.headers) {
       ctx.set(key, this.config.headers[key]);
